@@ -10,6 +10,7 @@ The implementation is driven by several key motivations:
 -   **Worker Reuse**: Reuse workers to minimize the overhead associated with creating new worker threads.
 -   **Prevent Out-of-Memory Errors**: Mitigate the risk of [out-of-memory issues](https://en.wikipedia.org/wiki/Out_of_memory) by limiting the number of concurrent workers.
 -   **Asynchronous Task Offloading**: Offload computationally expensive tasks to worker threads, allowing the main thread to remain responsive.
+-   **Task Delegation on Worker Readiness**: Ensure tasks are delegated to workers as soon as they are available, preventing task loss when a worker is busy.
 
 ### Usage
 
