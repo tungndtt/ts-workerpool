@@ -3,7 +3,7 @@ import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 
-async function getWorkerDirectory() {
+async function getBuildDirectory() {
     // Read outDir from tsconfig.json
     const pwd = process.cwd();
     const tsConfigPath = path.resolve(pwd, "tsconfig.json");
@@ -138,14 +138,14 @@ export default class WorkerPool {
 
     private constructor() {}
 
-    static async getInstance(workerName: string, poolSize: number): Promise<WorkerPool> {
+    static async getInstance(workerPath: string, poolSize: number): Promise<WorkerPool> {
         const workerPool = new WorkerPool();
         workerPool.workers = [];
         workerPool.availability = new AvailabilityQueue(poolSize);
         workerPool.taskQueue = new TaskQueue();
         workerPool.notifications = new Map();
-        const workerDirectory = await getWorkerDirectory();
-        const workerFile = path.resolve(workerDirectory, "workers", workerName);
+        const buildDirectory = await getBuildDirectory();
+        const workerFile = path.resolve(buildDirectory, workerPath);
         const workerInitialization = [];
         for (let workerId = 0; workerId < poolSize; workerId++) {
             workerInitialization.push(
