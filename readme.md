@@ -78,11 +78,11 @@ async function app() {
     await Promise.all(tasks);
     console.log("finish tasks. Take 2s break ...");
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log("submit additional tasks ...");
-    let result = await pool.addTask("extra task 1");
-    console.log(result);
-    result = await pool.addTask("extra task 2");
-    console.log(result);
+    console.log("submit first additional task ...");
+    const extraTask1 = pool.addTask("extra task 1");
+    console.log("submit second additional task ...");
+    const extraTask2 = pool.addTask("extra task 2");
+    (await Promise.all([extraTask1, extraTask2])).forEach((result) => console.log(result));
     pool.stop();
 }
 app();
@@ -105,9 +105,10 @@ submit tasks ...
 [Worker 3]: Echo 6
 [Worker 1]: Echo 7
 finish tasks. Take 2s break ...
-submit additional tasks ...
+submit first additional task ...
+submit second additional task ...
 [Worker 0]: Echo extra task 1
-[Worker 0]: Echo extra task 2
+[Worker 1]: Echo extra task 2
 Worker 1 exits
 Worker 0 exits
 Worker 3 exits

@@ -15,11 +15,11 @@ async function app() {
     await Promise.all(tasks);
     console.log("finish tasks. Take 2s break ...");
     await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log("submit additional tasks ...");
-    let result = await pool.addTask("extra task 1");
-    console.log(result);
-    result = await pool.addTask("extra task 2");
-    console.log(result);
+    console.log("submit first additional task ...");
+    const extraTask1 = pool.addTask("extra task 1");
+    console.log("submit second additional task ...");
+    const extraTask2 = pool.addTask("extra task 2");
+    (await Promise.all([extraTask1, extraTask2])).forEach((result) => console.log(result));
     pool.stop();
 }
 
