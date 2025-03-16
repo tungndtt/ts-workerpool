@@ -45,7 +45,7 @@ npm run dev
 > Currently, the build directory detection is based on the environment mode, which is determined by the `NODE_ENV` variable. By default, `NODE_ENV` is set to `dev`, but you can set it to `prod` for production mode.
 >
 > -   In development mode, the build directory is determined dynamically using the `tsconfig.json` file. Specifically, the `compilerOptions.outDir` must be set in `tsconfig.json` to define the output directory.
-> -   In production mode, the build directory is expected to be explicitly defined and used for launching the worker pool.
+> -   In production mode, the build directory is expected to be used for launching the worker pool.
 
 ### Example
 
