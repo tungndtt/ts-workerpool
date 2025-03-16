@@ -6,6 +6,9 @@ import path from "path";
 async function getBuildDirectory() {
     // Read outDir from tsconfig.json
     const pwd = process.cwd();
+    if(process.env.NODE_ENV === "prod") {
+        return pwd;
+    }
     const tsConfigPath = path.resolve(pwd, "tsconfig.json");
     return new Promise<string>((resolve, reject) => {
         fs.readFile(tsConfigPath, "utf8", (err, data) => {

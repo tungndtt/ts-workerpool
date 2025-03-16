@@ -2,7 +2,7 @@
     "name": "ts-workerpool",
     "version": "0.1.0",
     "scripts": {
-        "start": "tsc --build tsconfig.json & ts-node src/app.ts",
+        "dev": "tsc --build tsconfig.json & ts-node src/app.ts",
         "build": "tsc --build tsconfig.json",
         "trace": "tsc --traceResolution"
     },

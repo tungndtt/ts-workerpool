@@ -37,8 +37,15 @@ const pool = await WorkerPool.getInstance(workerPath, poolSize);
 ##### Run Command
 
 ```sh
-npm start
+npm run dev
 ```
+
+> [!NOTE]  
+> The worker pool implementation utilizes precompiled worker JS files included in the build. To function correctly, it needs to know the location of the build directory, which can vary based on your project setup.
+> Currently, the build directory detection is based on the environment mode, which is determined by the `NODE_ENV` variable. By default, NODE_ENV is set to development (`dev`), but you can set it to production (`prod`) for production mode.
+>
+> -   In development mode, the build directory is determined dynamically using the `tsconfig.json` file. Specifically, the `compilerOptions.outDir` must be set in `tsconfig.json` to define the output directory.
+> -   In production mode, the build directory is expected to be explicitly defined and used for launching the worker pool.
 
 ### Example
 
